@@ -1,17 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BA149121-4E65-4E39-8D56-99DA6CE41E90}</ProjectGuid>
+    <TargetFramework>net472</TargetFramework>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MongoGorillas2.Repository</RootNamespace>
     <AssemblyName>MongoGorillas2.Repository</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <PackageId>MongoGorillas2.Repository</PackageId>
+    <RootNamespace>MongoGorillas2.Repository</RootNamespace>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
+
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -21,6 +18,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
@@ -29,54 +27,28 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="MongoDB.Bson, Version=2.4.2.27, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MongoDB.Bson.2.4.2\lib\net45\MongoDB.Bson.dll</HintPath>
-    </Reference>
-    <Reference Include="MongoDB.Driver, Version=2.4.2.27, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MongoDB.Driver.2.4.2\lib\net45\MongoDB.Driver.dll</HintPath>
-    </Reference>
-    <Reference Include="MongoDB.Driver.Core, Version=2.4.2.27, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MongoDB.Driver.Core.2.4.2\lib\net45\MongoDB.Driver.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="MongoDB.Driver.Legacy, Version=2.4.2.27, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\mongocsharpdriver.2.4.2\lib\net45\MongoDB.Driver.Legacy.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="MongoDB.Bson" Version="2.4.2" />
+    <PackageReference Include="MongoDB.Driver" Version="2.4.2" />
+    <PackageReference Include="MongoDB.Driver.Core" Version="2.4.2" />
+    <PackageReference Include="MongoDB.Driver.Legacy" Version="2.4.2" />
+    <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.0.1" />
   </ItemGroup>
+
   <ItemGroup>
     <Compile Include="GorillaRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\MongoGorillas2.Database\MongoGorillas2.Database.csproj">
-      <Project>{a38c0336-477e-4f2c-b0e6-eb629c2534a1}</Project>
-      <Name>MongoGorillas2.Database</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MongoGorillas2.Types\MongoGorillas2.Types.csproj">
-      <Project>{15494778-500f-4c31-8d8e-bf6f91f60570}</Project>
-      <Name>MongoGorillas2.Types</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\MongoGorillas2.Database\MongoGorillas2.Database.csproj" />
+    <ProjectReference Include="..\MongoGorillas2.Types\MongoGorillas2.Types.csproj" />
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Update="app.config" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="packages.config" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
