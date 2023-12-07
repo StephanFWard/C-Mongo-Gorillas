@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoGorillas", "MongoDragons\MongoDragons.csproj", "{EE04D3AD-E7A7-40B1-9AF1-D1591B97F4DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoGorillas", "MongoGorillas\MongoGorillas.csproj", "{EE04D3AD-E7A7-40B1-9AF1-D1591B97F4DA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoGorillas.Repository", "MongoGorillas.Repository\MongoGorillas.Repository.csproj", "{3732BBA1-6546-4ACF-9944-742FEBD0F023}"
 EndProject

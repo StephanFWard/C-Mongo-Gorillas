@@ -1,5 +1,5 @@
 # C-Mongo-Gorillas
-About A C# .NET example using MongoDb to create and display scary dragons! Uses a repository pattern and business layer to access data in the cloud via MongoLab.
+About A C# .NET example using MongoDb to create and display scary Gorillas! Uses a repository pattern and business layer to access data in the cloud via MongoLab.
 
 Copyright © 2023 Stephan Ward
 Permission is hereby granted, free of charge, to any person obtaining
