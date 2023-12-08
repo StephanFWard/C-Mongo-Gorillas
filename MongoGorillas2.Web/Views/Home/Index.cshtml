@@ -9,22 +9,22 @@
 
 <h2>Hello World!</h2>
 
-<div data-ng-app='homeApplication' data-ng-controller='homeController'>
+<div data-ng-app='homeApplication' data-ng-controller='homeController as vm'>
     <table>
         <thead>
             <tr>
-                <td data-ng-click="sort='Name'">Name</td>
-                <td data-ng-click ="sort='Age'">Age</td>
+                <td data-ng-click="vm.sort='Name'">Name</td>
+                <td data-ng-click="vm.sort='Age'">Age</td>
                 <td>Description</td>
-                <td data-ng-click="sort='Gold'">Gold</td>
-                <td data-ng-click="sort='HP'">HP</td>
+                <td data-ng-click="vm.sort='Gold'">Gold</td>
+                <td data-ng-click="vm.sort='HP'">HP</td>
                 <td>Weapon</td>
                 <td>Date Born</td>
                 <td></td>
             </tr>
         </thead>
         <tbody>
-            <tr data-ng-repeat='Gorilla in Gorillas | orderBy:sort'>
+            <tr data-ng-repeat='Gorilla in vm.Gorillas | orderBy:vm.sort'>
                 <td>{{ Gorilla.Name }}</td>
                 <td>{{ Gorilla.Age }}</td>
                 <td>{{ Gorilla.Description }}</td>
@@ -33,13 +33,13 @@
                 <td>{{ Gorilla.Weapon.Name }} ({{ Gorilla.Weapon.Description }})</td>
                 <td>{{ Gorilla.DateBorn }}</td>
                 <td>
-                    <div style="color: #ccc; cursor: pointer;" data-ng-click='remove(Gorilla)'>X</div>
+                    <div style="color: #ccc; cursor: pointer;" data-ng-click='vm.remove(Gorilla)'>X</div>
                 </td>
             </tr>
         </tbody>
     </table>
 
     <p>
-        <input type='button' value='Spawn' data-ng-click='spawn()' />
+        <input type='button' value='Spawn' data-ng-click='vm.spawn()' />
     </p>
 </div>

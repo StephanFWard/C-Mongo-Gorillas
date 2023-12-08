@@ -1,23 +1,43 @@
 ﻿var app = angular.module('homeApplication', []);
 
-app.controller('homeController', function ($scope, $http) {
-    $http.get('/service/Gorillas').then(function(data) {
-        $scope.Gorillas = data.data;
-    });
+app.controller('homeController', ['$http', function ($http) {
+    'use strict';
 
-    $scope.spawn = function () {
-        $http.post('/service/spawn').then(function(data) {
-            $scope.Gorillas.push(data.data);
+    var vm = this;
+    vm.Gorillas = [];
+
+    // Fetch Gorillas
+    $http.get('/service/Gorillas')
+        .then(function (response) {
+            vm.Gorillas = response.data;
+        })
+        .catch(function (error) {
+            console.error('Error fetching Gorillas:', error);
         });
-    }
 
-    $scope.remove = function (Gorilla) {
-        if (confirm('Are you sure?')) {
-            $http.post('/service/remove', JSON.stringify(Gorilla)).then(function(data) {
-                if (data.data) {
-                    $scope.Gorillas.splice($scope.Gorillas.indexOf(Gorilla), 1);
-                }
+    // Add new Gorilla
+    vm.spawn = function () {
+        $http.post('/service/spawn')
+            .then(function (response) {
+                vm.Gorillas.push(response.data);
+            })
+            .catch(function (error) {
+                console.error('Error spawning Gorilla:', error);
             });
+    };
+
+    // Remove Gorilla
+    vm.remove = function (Gorilla) {
+        if (confirm('Are you sure?')) {
+            $http.post('/service/remove', JSON.stringify(Gorilla))
+                .then(function (response) {
+                    if (response.data) {
+                        vm.Gorillas.splice(vm.Gorillas.indexOf(Gorilla), 1);
+                    }
+                })
+                .catch(function (error) {
+                    console.error('Error removing Gorilla:', error);
+                });
         }
-    }
-});
+    };
+}]);

@@ -1,7 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Project Description -->
+  <!-- This project contains the repository logic for interacting with MongoDB in the MongoGorillas2 application. -->
 
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFramework>net801</TargetFramework>
     <OutputType>Library</OutputType>
     <AssemblyName>MongoGorillas2.Repository</AssemblyName>
     <PackageId>MongoGorillas2.Repository</PackageId>
@@ -9,6 +12,7 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
+  <!-- Debug Configuration -->
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -19,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
 
+  <!-- Release Configuration -->
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
@@ -28,24 +33,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
 
+  <!-- Package References -->
   <ItemGroup>
-    <PackageReference Include="MongoDB.Bson" Version="2.4.2" />
-    <PackageReference Include="MongoDB.Driver" Version="2.4.2" />
-    <PackageReference Include="MongoDB.Driver.Core" Version="2.4.2" />
-    <PackageReference Include="MongoDB.Driver.Legacy" Version="2.4.2" />
-    <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.0.1" />
+    <PackageReference Include="MongoDB.Bson" Version="latest_version" />
+    <PackageReference Include="MongoDB.Driver" Version="latest_version" />
+    <PackageReference Include="MongoDB.Driver.Core" Version="latest_version" />
+    <PackageReference Include="MongoDB.Driver.Legacy" Version="latest_version" />
+    <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="latest_version" />
   </ItemGroup>
 
+  <!-- Source Files -->
   <ItemGroup>
     <Compile Include="GorillaRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
 
+  <!-- Project References -->
   <ItemGroup>
     <ProjectReference Include="..\MongoGorillas2.Database\MongoGorillas2.Database.csproj" />
     <ProjectReference Include="..\MongoGorillas2.Types\MongoGorillas2.Types.csproj" />
   </ItemGroup>
 
+  <!-- Additional Files -->
   <ItemGroup>
     <None Update="app.config" CopyToOutputDirectory="PreserveNewest" />
     <None Update="packages.config" CopyToOutputDirectory="PreserveNewest" />

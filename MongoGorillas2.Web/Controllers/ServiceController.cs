@@ -13,26 +13,26 @@ namespace MongoGorillas2.Web.Controllers
         [HttpGet]
         public JsonResult Gorillas()
         {
-            IEnumerable<Gorilla> Gorillas = GorillaRepository.ToList();
+            IEnumerable<Gorilla> gorillas = GorillaRepository.ToList();
 
-            return Json(Gorillas, JsonRequestBehavior.AllowGet);
+            return Json(gorillas, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public JsonResult Spawn()
         {
             // Commented out for demo.
-            // Gorilla Gorilla = GorillaRepository.Spawn();
-            Gorilla Gorilla = new Gorilla() { Name = "Test", Age = 10, Gold = 100 };
+            // Gorilla gorilla = GorillaRepository.Spawn();
+            Gorilla gorilla = new Gorilla() { Name = "Test", Age = 10, Gold = 100 };
 
-            return Json(Gorilla);
+            return Json(gorilla);
         }
 
         [HttpPost]
-        public JsonResult Remove(Gorilla Gorilla)
+        public JsonResult Remove(Gorilla gorilla)
         {
             // Commented out for demo.
-            // bool result = GorillaRepository.Remove(Gorilla);
+            // bool result = GorillaRepository.Remove(gorilla);
             bool result = true;
 
             return Json(result);
