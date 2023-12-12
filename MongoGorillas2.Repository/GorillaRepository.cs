@@ -1,39 +1,68 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MongoGorillas2.Types;
 using MongoGorillas2.Database.Interface;
-using MongoGorillas2.Database.Concrete;
 
 namespace MongoGorillas2.Repository
 {
-public static class GorillaRepository
-{
-    private static IDatabase<Gorilla> _db = new MongoDatabase<Gorilla>("Gorilla");
-
-    public static Gorilla Spawn()
+    public class GorillaRepository
     {
-        Gorilla Gorilla = new Gorilla() { Name = "Test", Age = 10, Gold = 100 };
+        private readonly IDatabase<Gorilla> _db;
 
-        // Save object.
-        if (!_db.Add(Gorilla))
+        public GorillaRepository(IDatabase<Gorilla> database)
         {
-            Gorilla = null;
+            _db = database ?? throw new ArgumentNullException(nameof(database));
         }
 
-        return Gorilla;
-    }
+        public Gorilla Spawn()
+        {
+            try
+            {
+                Gorilla gorilla = new Gorilla { Name = "Test", Age = 10, Gold = 100 };
 
-    public static bool Remove(Gorilla Gorilla)
-    {
-        return _db.Delete(Gorilla);
-    }
+                if (_db.Add(gorilla))
+                {
+                    return gorilla;
+                }
 
-    public static IEnumerable<Gorilla> ToList()
-    {
-        return _db.Query.AsEnumerable();
+                // Log an error or handle the case where the Gorilla couldn't be added.
+                Console.WriteLine("Failed to add Gorilla to the database.");
+            }
+            catch (Exception ex)
+            {
+                // Log or handle the exception, e.g., log.Error(ex.Message, ex);
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+
+            return null;
+        }
+
+        public bool Remove(Gorilla gorilla)
+        {
+            try
+            {
+                return _db.Delete(gorilla);
+            }
+            catch (Exception ex)
+            {
+                // Log or handle the exception, e.g., log.Error(ex.Message, ex);
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return false;
+            }
+        }
+
+        public IEnumerable<Gorilla> GetGorillas()
+        {
+            try
+            {
+                return _db.Query.AsEnumerable();
+            }
+            catch (Exception ex)
+            {
+                // Log or handle the exception, e.g., log.Error(ex.Message, ex);
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return new List<Gorilla>();
+            }
+        }
     }
-}
 }
